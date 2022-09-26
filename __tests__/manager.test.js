@@ -5,6 +5,7 @@ it('tests whether or not we can create a new manager properly with Manager const
     expect(manager.name).toBe('Lumberg');
     expect(manager.id).toBe(7718);
     expect(manager.email).toBe('BillLumberg@hmm.yeah');
+    expect(manager.officeNumber).toBe(007);
 });
 
 it('tests the getName method', () => {
@@ -17,6 +18,10 @@ it('tests the getId method', () => {
 
 it('tests the getEmail method', () => {
     expect(manager.getEmail()).toBe('BillLumberg@hmm.yeah')}
+    );
+
+it('tests the getofficeNumber method', () => {
+    expect(manager.getofficeNumber()).toBe(007)}
     );
 
 it('tests the getRole method', () => {
