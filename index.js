@@ -9,7 +9,7 @@ const manager = require('./lib/manager');
 const team = [];
 
 
-const outputHTML = require('./dist/htmlOutput');
+const outputHTML = require('./dist/outputHTML');
 const outputDir = path.resolve(__dirname, 'output')
 const outputPath = path.join(outputDir, 'team.html')
 
@@ -27,7 +27,7 @@ const mainMenu = () => {
                 internPrompts();
             } else if (userContinue === "engineer") {
                 engineerPrompts();
-            } else (){
+            } else {
                 console.log("No new employee chosen, generating page");
                 createTeam();
             }
@@ -126,5 +126,10 @@ const managerPrompts = () => {
 
 
 const createTeam = () => {
-    console.log
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir)
+    }
+    fs.writeFileSync(outputPath, outputHTML(team), "utf-8");
 }
+
+mainMenu();
