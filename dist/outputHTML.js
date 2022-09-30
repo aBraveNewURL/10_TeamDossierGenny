@@ -19,8 +19,8 @@ const outputHTML = (team) => {
     }
     const internPrompts = intern => {
         console.log("Creating Intern...");
-        let internHTML = 
-        `
+        let internHTML =
+            `
         <div class="card" style="width:18rem;">
     <div class="card-header">
         ${intern.name} <br>
@@ -37,8 +37,8 @@ const outputHTML = (team) => {
 
     const managerPrompts = manager => {
         console.log("Creating Manager...");
-        let managerHTML = 
-        `
+        let managerHTML =
+            `
         <div class="card" style="width:18rem;">
     <div class="card-header">
         ${manager.name} <br>
