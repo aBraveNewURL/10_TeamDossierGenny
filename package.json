@@ -4,5 +4,26 @@
   },
   "devDependencies": {
     "jest": "^29.0.3"
-  }
+  },
+  "name": "10_teamdossiergenny",
+  "description": "Generates a quick, simple document with teammate info",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aBraveNewURL/10_TeamDossierGenny.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aBraveNewURL/10_TeamDossierGenny/issues"
+  },
+  "homepage": "https://github.com/aBraveNewURL/10_TeamDossierGenny#readme"
 }

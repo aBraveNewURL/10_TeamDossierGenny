@@ -21,11 +21,11 @@ const mainMenu = () => {
         choices: ['engineer', 'intern', 'manager', 'none']
     }])
         .then(userContinue => {
-            if (userContinue === "manager") {
+            if (userContinue == "manager") {
                 managerPrompts();
-            } else if (userContinue === "intern") {
+            } else if (userContinue == "intern") {
                 internPrompts();
-            } else if (userContinue === "engineer") {
+            } else if (userContinue == "engineer") {
                 engineerPrompts();
             } else {
                 console.log("No new employee chosen, generating page");

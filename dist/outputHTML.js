@@ -15,7 +15,8 @@ const outputHTML = (team) => {
                     li class="list-group-item">GitHub: <a target="_blank" href="https://github.com/${engineer.gitHub}"></li>
                 </ul>
             </div>
-        `
+        `;
+        html.push(engineerHTML)
     }
     const internPrompts = intern => {
         console.log("Creating Intern...");
@@ -32,7 +33,8 @@ const outputHTML = (team) => {
         <li class="list-group-item">School: ${intern.school}</li>
     </ul>
 </div>
-        `
+        `;
+        html.push(internHTML)
     }
 
     const managerPrompts = manager => {
@@ -46,10 +48,49 @@ const outputHTML = (team) => {
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">ID: ${manager.idNum}</li>
-        <li class="list-group-item">E-mail:<span id="email"><a href="mailto:${manager.email}">${manager.email}</a></span></li>
+        <li class="list-group-item">E-mail: <span id="email"><a href="mailto:${manager.email}">${manager.email}</a></span></li>
         <li class="list-group-item">Office Number: ${manager.officeNum}</li>
     </ul>
 </div>
-        `
-    };
+        `;
+        html.push(managerHTML)
+    }
+
+    for (let i = 0; i < team.length; i++) {
+        if (team[i].getRole() === "engineer") {
+            generateEngineer(team[i]);
+        }
+        if (team[i].getRole() === "intern") {
+            generateIntern(team[i]);
+        }
+        if (team[i].getRole() === "manager") {
+            generateManager(team[i]);
+        }
+    }
+    return html.join("");
 };
+
+module.exports = team => {
+    return 
+    `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>E-Z Team Generator</title>
+    </head>
+    <body>
+    <header>
+    <h1>Team Members:
+    </h1>
+    </header>
+    <main>${createTeam(team)}
+    </main>
+    </body>
+    </html>
+    `
+};
+
