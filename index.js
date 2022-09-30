@@ -22,6 +22,7 @@ const mainMenu = () => {
         .then(userContinue => {
             switch (userContinue.menu) {
                 case "engineer":
+                    console.log("Engineer chosen");
                     engineerPrompts();
                     break;
                 case "intern":
