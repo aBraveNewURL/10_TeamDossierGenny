@@ -1,17 +1,16 @@
 const inquirer = require('inquirer');
-const jest = require('jest');
+// const jest = require('jest');
 const fs = require('fs');
 const path = require('path');
 
-const engineer = require('./lib/employee');
-const intern = require('./lib/intern');
-const manager = require('./lib/manager');
-const team = [];
-
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
+const Manager = require('./lib/manager');
 
 const outputHTML = require('./dist/outputHTML');
-const outputDir = path.resolve(__dirname, 'output')
-const outputPath = path.join(outputDir, 'team.html')
+const team = [];
+const OUTPUT_DIR = path.resolve(__dirname, 'output')
+const outputPath = path.join(OUTPUT_DIR, 'team.html')
 
 const mainMenu = () => {
     return inquirer.prompt([{
@@ -21,15 +20,18 @@ const mainMenu = () => {
         choices: ['engineer', 'intern', 'manager', 'none']
     }])
         .then(userContinue => {
-            if (userContinue == "manager") {
-                managerPrompts();
-            } else if (userContinue == "intern") {
-                internPrompts();
-            } else if (userContinue == "engineer") {
-                engineerPrompts();
-            } else {
-                console.log("No new employee chosen, generating page");
-                createTeam();
+            switch (userContinue.menu) {
+                case "engineer":
+                    engineerPrompts();
+                    break;
+                case "intern":
+                    internPrompts();
+                    break;
+                case "manager":
+                    managerPrompts();
+                    break;
+                default:
+                    createTeam();
             }
         })
 };
@@ -126,10 +128,11 @@ const managerPrompts = () => {
 
 
 const createTeam = () => {
-    if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir)
+    if (!fs.existsSync(OUTPUT_DIR)) 
+    {
+        fs.mkdirSync(OUTPUT_DIR)
     }
-    fs.writeFileSync(outputPath, outputHTML(team), "utf-8");
+    fs.writeFileSync(outputPath,outputHTML(team),"utf-8");
 }
 
 mainMenu();

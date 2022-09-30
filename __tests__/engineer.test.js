@@ -1,35 +1,35 @@
 const Engineer = require('../lib/engineer');
-const newEngineer = new Engineer('Crankypants', 14, 'principal@business.org', 'RedLeaderStandingBy')
+const engineer = new Engineer('Crankypants','14','principal@business.org','RedLeaderStandingBy')
 
-test('tests whether or not we can create a new manager properly with Manager constructor', () => {
-    expect(manager.name).toBe('Crankypants');
-    expect(manager.id).toBe(14);
-    expect(manager.email).toBe('principal@business.org');
-    expect(manager.officeNumber).toBe('RedLeaderStandingBy');
+test('tests whether or not we can create a new engineer properly with Engineer constructor', () => {
+    expect(engineer.name).toBe('Crankypants');
+    expect(engineer.id).toBe('14');
+    expect(engineer.email).toBe('principal@business.org');
+    expect(engineer.gitHub).toBe('RedLeaderStandingBy');
 });
 
 test('tests the getName method', () => {
-    expect(manager.getName()).toBe('Crankypants')
+    expect(engineer.getName()).toBe('Crankypants')
 }
 );
 
 test('tests the getId method', () => {
-    expect(manager.getId()).toBe(14)
+    expect(engineer.getId()).toBe('14')
 }
 );
 
 test('tests the getEmail method', () => {
-    expect(manager.getEmail()).toBe('principal@business.org')
+    expect(engineer.getEmail()).toBe('principal@business.org')
 }
 );
 
 test('tests the getgitHub method', () => {
-    expect(manager.getgitHub()).toBe('RedLeaderStandingBy')
+    expect(engineer.getgitHub()).toBe('RedLeaderStandingBy')
 }
 );
 
 it('tests the getRole method', () => {
-    expect(manager.getRole()).toBe('Engineer')
+    expect(engineer.getRole()).toBe('Engineer')
 }
 );
 
