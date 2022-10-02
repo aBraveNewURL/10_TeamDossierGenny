@@ -20,7 +20,8 @@ const mainMenu = () => {
         choices: ['engineer', 'intern', 'manager', 'none']
     }])
         .then(userContinue => {
-            switch (userContinue.menu) {
+            
+            switch (userContinue.main) {
                 case "engineer":
                     console.log("Engineer chosen");
                     engineerPrompts();
@@ -31,8 +32,11 @@ const mainMenu = () => {
                 case "manager":
                     managerPrompts();
                     break;
+                case "none":
+                    createTeam();
                 default:
                     createTeam();
+
             }
         })
 };
@@ -92,7 +96,7 @@ const internPrompts = () => {
         .then(answers => {
             console.log(answers);
             const intern = new Intern(answers.name, answers.idNum, answers.email, answers.school);
-            team.push(manager);
+            team.push(intern);
             mainMenu();
         })
 };
@@ -129,8 +133,7 @@ const managerPrompts = () => {
 
 
 const createTeam = () => {
-    if (!fs.existsSync(OUTPUT_DIR)) 
-    {
+    if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }
     fs.writeFileSync(outputPath,outputHTML(team),"utf-8");
