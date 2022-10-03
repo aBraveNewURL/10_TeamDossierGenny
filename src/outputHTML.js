@@ -1,7 +1,6 @@
 const createTeam = (team) => {
     console.log("running Create Team function");
     const html = [];
-
     const buildEngineer = engineer => {
         console.log("Creating Engineer...");
         let engineerHTML = `
@@ -17,8 +16,8 @@ const createTeam = (team) => {
         </div>
         `;
         html.push(engineerHTML);
+        console.log("manager html push initiated");
     }
-
     const buildIntern = intern => {
         console.log("Creating Intern...");
         let internHTML = `
@@ -34,6 +33,7 @@ const createTeam = (team) => {
         </div>
         `;
         html.push(internHTML);
+        console.log("manager html push initiated");
     }
     const buildManager = manager => {
         console.log("Creating Manager...");
@@ -50,6 +50,7 @@ const createTeam = (team) => {
         </div>
         `;
         html.push(managerHTML);
+        console.log("manager html push initiated");
     }
     for (let i = 0; i < team.length; i++) {
         if (team[i].getRole() === "engineer") {
@@ -57,6 +58,7 @@ const createTeam = (team) => {
         }
         if (team[i].getRole() === "intern") {
             buildIntern(team[i]);
+
         }
         if (team[i].getRole() === "manager") {
             buildManager(team[i]);
@@ -64,27 +66,3 @@ const createTeam = (team) => {
     }
     return html.join('');
 }
-
-module.exports = (team) => {
-    console.log("Exporting myTeam module");
-    return `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>E-Z Team Generator</title>
-    </head>
-    <body>
-    <header>
-    <h1>Team Members
-    </h1>
-    </header>
-    <main> ${createTeam(team)} </main>
-    </body>
-    </html>`
-};
-
-
