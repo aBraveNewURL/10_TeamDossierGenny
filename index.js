@@ -1,23 +1,22 @@
 const inquirer = require('inquirer');
-// const jest = require('jest');
 const fs = require('fs');
 const path = require('path');
 
-const Engineer = require('./lib/engineer');
+const Engineer = require('./lib/engineer');  
 const Intern = require('./lib/intern');
 const Manager = require('./lib/manager');
 
-const outputHTML = require('./dist/outputHTML');
-const team = [];
+const outputHTML = require('./src/outputHTML');
+const teamMembers = [];
 const OUTPUT_DIR = path.resolve(__dirname, 'output')
-const outputPath = path.join(OUTPUT_DIR, 'team.html')
+const outputPath = path.join(OUTPUT_DIR, 'finishedProduct.html')
 
 const mainMenu = () => {
     return inquirer.prompt([{
         name: 'main',
         type: 'list',
         message: 'Which team member would you like to add?',
-        choices: ['engineer', 'intern', 'manager', 'none']
+        choices: ['engineer', 'intern', 'manager', 'done']
     }])
         .then(userContinue => {
             
@@ -27,15 +26,19 @@ const mainMenu = () => {
                     engineerPrompts();
                     break;
                 case "intern":
+                    console.log("Intern chosen");
                     internPrompts();
                     break;
                 case "manager":
+                    console.log("Manager chosen");
                     managerPrompts();
                     break;
-                case "none":
-                    createTeam();
+                case "done":
+                    console.log("Done chosen");
+                    buildTeam();
                 default:
-                    createTeam();
+                    console.log("Default called")
+                    buildTeam();
 
             }
         })
@@ -66,7 +69,7 @@ const engineerPrompts = () => {
         .then(answers => {
             console.log(answers);
             const engineer = new Engineer(answers.name, answers.idNum, answers.email, answers.gitHub);
-            team.push(engineer);
+            teamMembers.push(engineer);
             mainMenu();
         })
 };
@@ -96,7 +99,7 @@ const internPrompts = () => {
         .then(answers => {
             console.log(answers);
             const intern = new Intern(answers.name, answers.idNum, answers.email, answers.school);
-            team.push(intern);
+            teamMembers.push(intern);
             mainMenu();
         })
 };
@@ -126,17 +129,15 @@ const managerPrompts = () => {
         .then(answers => {
             console.log(answers);
             const manager = new Manager(answers.name, answers.idNum, answers.email, answers.officeNum);
-            team.push(manager);
+            teamMembers.push(manager);
             mainMenu();
         })
 };
-
-
-const createTeam = () => {
+const buildTeam = () => {
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }
-    fs.writeFileSync(outputPath,outputHTML(team),"utf-8");
+    fs.writeFileSync(outputPath,outputHTML(teamMembers),"utf-8");
 }
 
 mainMenu();
