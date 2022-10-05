@@ -33,9 +33,9 @@ const mainMenu = () => {
                     console.log("Manager chosen");
                     managerPrompts();
                     break;
-                case "done":
-                    console.log("Done chosen");
-                    buildTeam();
+                // case "done":
+                //     console.log("Done chosen");
+                //     buildTeam();
                 default:
                     console.log("Default called")
                     buildTeam();
@@ -130,6 +130,7 @@ const managerPrompts = () => {
             console.log(answers);
             const manager = new Manager(answers.name, answers.idNum, answers.email, answers.officeNum);
             teamMembers.push(manager);
+            console.log(teamMembers);
             mainMenu();
         })
 };
@@ -137,6 +138,8 @@ const buildTeam = () => {
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }
+    console.log("This is teamMembers:" + teamMembers);    
+    console.log("This is teamMembers.name: " + teamMembers.name);
     fs.writeFileSync(outputPath,outputHTML(teamMembers),"utf-8");
 }
 

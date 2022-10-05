@@ -1,5 +1,30 @@
+module.exports = (team) => {
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>E-Z Team Generator</title>
+    </head>
+    <body>
+    <header>
+    <h1>Team Members
+    </h1>
+    </header>
+    <main> ${createTeam(team)} </main>
+    </body>
+    </html>`
+};
+
+
+
+
 const createTeam = (team) => {
     console.log("running Create Team function");
+    // console.log("This is team.engineer: "+team.engineer);
     const html = [];
     const buildEngineer = engineer => {
         console.log("Creating Engineer...");
@@ -53,16 +78,18 @@ const createTeam = (team) => {
         console.log("manager html push initiated");
     }
     for (let i = 0; i < team.length; i++) {
-        if (team[i].getRole() === "engineer") {
+        console.log([i]);
+        if (team[i].getRole() === "Engineer") {
             buildEngineer(team[i]);
         }
-        if (team[i].getRole() === "intern") {
+        if (team[i].getRole() === "Intern") {
             buildIntern(team[i]);
 
         }
-        if (team[i].getRole() === "manager") {
+        if (team[i].getRole() === "Manager") {
             buildManager(team[i]);
         }
     }
+    console.log(team);
     return html.join('');
 }
