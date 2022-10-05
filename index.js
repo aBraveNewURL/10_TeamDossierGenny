@@ -33,13 +33,9 @@ const mainMenu = () => {
                     console.log("Manager chosen");
                     managerPrompts();
                     break;
-                // case "done":
-                //     console.log("Done chosen");
-                //     buildTeam();
                 default:
                     console.log("Default called")
                     buildTeam();
-
             }
         })
 };
