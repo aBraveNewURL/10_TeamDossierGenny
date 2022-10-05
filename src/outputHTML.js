@@ -11,7 +11,7 @@ const createTeam = (team) => {
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">ID: ${engineer.id}</li>
                 <li class="list-group-item">E-mail:<span id="email"><a href="mailto:${engineer.email}"> ${engineer.email}</a></span></li>
-                <li class="list-group-item">GitHub: ${engineer.gitHub}</li>
+                <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.gitHub}">${engineer.gitHub}</a></li>
             </ul>
         </div>
         `;
